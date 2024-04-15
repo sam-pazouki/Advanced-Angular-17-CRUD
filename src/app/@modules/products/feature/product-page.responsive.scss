@@ -1,0 +1,21 @@
+@media (max-width: 481px) {
+  .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .filter--content {
+    width: 100%;
+  }
+}
+
+@media (max-width: 641px) {
+  .filter {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .filter--content {
+    width: 100%;
+  }
+}

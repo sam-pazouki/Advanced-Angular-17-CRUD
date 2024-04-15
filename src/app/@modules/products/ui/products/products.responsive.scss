@@ -1,0 +1,29 @@
+@media (max-width: 481px) {
+  .table--container--mobile {
+    display: block;
+  }
+
+  .table--container {
+    display: none;
+  }
+}
+
+@media (max-width: 641px) {
+  .table--container--mobile {
+    display: block;
+  }
+
+  .table--container {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .table--container--mobile {
+    display: block;
+  }
+
+  .table--container {
+    display: none;
+  }
+}

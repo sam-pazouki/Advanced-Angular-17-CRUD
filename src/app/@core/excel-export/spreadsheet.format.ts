@@ -1,0 +1,1 @@
+export const SPREADSHEET_FORMAT = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';

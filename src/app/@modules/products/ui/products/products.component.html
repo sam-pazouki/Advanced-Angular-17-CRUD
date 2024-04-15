@@ -1,0 +1,122 @@
+<div class="card-standard tables--body text-standard w-full">
+  <div class="flex-row w-full">
+    <ng-container *ngIf="loadingProduct">
+      <ng-template *ngTemplateOutlet="loading"></ng-template>
+    </ng-container>
+    <ng-container *ngIf="!loadingProduct">
+      <div class="table--container w-full" *ngIf="products.length > 0">
+        <div class="table--header w-full">
+          <div [style.width]="'5%'" class="flex-row">
+            Id
+            <i class="material-icons pointer" [class.var--green]="selectedSort === 'id'" *ngIf="selectedOrderBy === 'asc' && selectedSort === 'id'" (click)="selectedOrderBy = 'desc'; selectedSort = 'id'; changeSort();">arrow_upward</i> 
+            <i class="material-icons pointer" [class.var--green]="selectedSort === 'id'"*ngIf="selectedOrderBy === 'desc' && selectedSort === 'id'" (click)="selectedOrderBy = 'asc'; selectedSort = 'id'; changeSort();">arrow_downward</i> 
+            <i class="material-icons pointer var--grey" *ngIf="selectedSort != 'id'" (click)="selectedOrderBy = 'asc'; selectedSort = 'id'; changeSort();">arrow_downward</i>  
+          </div>
+          <div [style.width]="'10%'">Image</div>
+          <div [style.width]="'30%'" class="flex-row">
+            Name
+            <i class="material-icons pointer" [class.var--green]="selectedSort === 'name'" *ngIf="selectedOrderBy === 'asc' && selectedSort === 'name'" (click)="selectedOrderBy = 'desc'; selectedSort = 'name'; changeSort();">arrow_upward</i> 
+            <i class="material-icons pointer" [class.var--green]="selectedSort === 'name'" *ngIf="selectedOrderBy === 'desc' && selectedSort === 'name'" (click)="selectedOrderBy = 'asc'; selectedSort = 'name'; changeSort();">arrow_downward</i>
+            <i class="material-icons pointer var--grey" *ngIf="selectedSort != 'name'" (click)="selectedOrderBy = 'asc'; selectedSort = 'name'; changeSort();">arrow_downward</i>  
+          </div>
+          <div [style.width]="'40%'">Description</div>
+          <div [style.min-width]="'150px'">Action</div>
+
+        </div>
+        <div class="table--body w-full">
+          <ng-container *ngFor="let item of products; let i = index;">
+            <div class="table--item">
+              <div [style.width]="'5%'">
+                {{ item?.id }}
+              </div>
+              <div [style.width]="'10%'">
+                <img src="{{ item?.photo }}" [style.height.px]="40" [style.border-radius.px]="8">
+              </div>
+              <div [style.width]="'30%'">
+                {{ item?.name }}
+              </div>
+              <div [style.width]="'40%'">
+                {{ item?.description }}
+              </div>
+              <div [style.min-width]="'150px'">
+                <div class="text-standard flex-row">
+                  <button mat-raised-button color="primary" class="" (click)="openProductModal(item, i)">
+                    <div class="flex-row">
+                      <i class="material-icons">edit</i> 
+                      <span class="hidemobile-icon">Edit</span>
+                    </div>
+                  </button>
+                  <button mat-raised-button color="warn" class="" (click)="deleteProduct(item, i)">
+                    <div class="flex-row">
+                      <i class="material-icons">delete</i> 
+                      <span class="hidemobile-icon">Delete</span>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="table--container--mobile" *ngIf="products.length > 0">
+        <ng-container *ngFor="let item of products; let i = index;">
+          <div class="table--item--mobile">
+            <div class="flex-col">
+                <div class="flex-row">
+                  <div class="var--grey">Id:</div> {{ item?.id }}
+                </div>
+                <div class="flex-row">
+                  <div class="var--grey">Image:</div>
+                  <img src="{{ item?.photo }}" [style.height.px]="40" [style.border-radius.px]="8">
+                </div>
+                <div class="flex-row">
+                  <div class="var--grey">Name:</div> {{ item?.name }}
+                </div>
+                <div class="flex-row flex-start">
+                  <div class="var--grey">Description:</div> {{ item?.description }}
+                </div>
+            </div>
+            <div class="space-half"></div>
+            <div>
+              <div class="text-standard flex-row">
+                <button mat-raised-button color="primary" class="" (click)="openProductModal(item, i)">
+                  <i class="material-icons">edit</i> 
+                </button>
+                <button mat-raised-button color="warn" class="" (click)="deleteProduct(item, i)">
+                  <i class="material-icons">delete</i> 
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <ng-container *ngIf="products.length === 0">
+        <div class="text-center product--empty w-full">
+            <div class="ilustration d-none d-lg-block d-xl-block">
+                <img src="assets/images/nodata.svg">
+            </div>
+            <div class="space"></div>
+            <div>
+                Empty Data
+            </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="w-full">
+    <ng-container *ngIf="loadingScrollProduct">
+      <ng-template *ngTemplateOutlet="loading"></ng-template>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="w-full">
+    <div class="space"></div>
+    <div class="flex-row w-full">
+      <app-loader [type]="'loader'"></app-loader>
+    </div>
+    <div class="space"></div>
+  </div>
+</ng-template>

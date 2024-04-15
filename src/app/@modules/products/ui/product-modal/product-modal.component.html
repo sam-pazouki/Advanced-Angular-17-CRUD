@@ -1,0 +1,90 @@
+<form [formGroup]="productForm" #form="ngForm">
+  <div class="modal-title" mat-dialog-title>
+    <ng-container *ngIf="!data?.detail">
+      Add
+    </ng-container>
+    <ng-container *ngIf="data?.detail">
+      Edit
+    </ng-container>
+    Product
+  </div>
+  <mat-dialog-content>
+    <div class="space"></div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput placeholder="Name">
+      </mat-form-field>
+    </div>
+    <div class="space"></div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
+        <input formControlName="description" matInput placeholder="Description">
+      </mat-form-field>
+    </div>
+
+    <div class="space"></div>
+    <div>
+      <div>
+        <mat-label>Photo</mat-label>
+      </div>
+      <div *ngIf="croppedImage">
+        <img [src]="croppedImage" height="200" [style.border-radius]="'8px'" [style.margin]="'auto'" width="auto" class="imagemobile" />
+      </div>
+      <div class="space-half"></div>
+      <div>
+        <button type="submit" mat-raised-button color="primary" class="flex-row" (click)="file.click()"
+          [disabled]="submitting">
+          {{ croppedImage ? 'Change' : 'Upload' }}
+        </button>
+      </div>
+      <input type="file" (change)="fileChangeEvent($event)" style="display:none" #file />
+      <div class="space-half"></div>
+
+      <ng-container *ngIf="isImageReady">
+        <div>
+          <mat-label>Crop</mat-label>
+        </div>
+      </ng-container>
+      <div class="space-half"></div>
+      <image-cropper [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true" [aspectRatio]="4 / 3" [output]="'base64'"
+        format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
+        (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+    </div>
+
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <div class="flex-row flex-content-end w-full modal-action">
+      <div>
+      </div>
+      <div class="flex-row flex-content-end w-full">
+        <button type="button" mat-raised-button color="default" class="flex-row" (click)="closeModal()">
+          <ng-container *ngIf="true">
+            <i class="material-icons">close</i>
+            Close
+          </ng-container>
+        </button>
+        <button type="submit" mat-raised-button color="primary" class="flex-row" (click)="scoring()"
+          [disabled]="submitting">
+          <ng-container *ngIf="submitting">
+            <div class="flex-row flex-content-center">
+              <app-loader></app-loader>
+              <span [style.margin-left]="'10px'">Loading...</span>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!submitting">
+            <ng-container *ngIf="!data?.detail">
+              <i class="material-icons">add</i>
+              Submit
+            </ng-container>
+            <ng-container *ngIf="data?.detail">
+              <i class="material-icons">edit</i>
+              Edit
+            </ng-container>
+          </ng-container>
+        </button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</form>

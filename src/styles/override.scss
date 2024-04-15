@@ -1,0 +1,46 @@
+mat-card {
+  margin: 2%;
+  text-align: left;
+}
+
+.mat-mdc-form-field {
+  width: 98%;
+  margin: 1px;
+}
+
+.mat-50 {
+  width: 48%;
+  margin: 1%;
+}
+
+.mdc-button__label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+::ng-deep .mdc-button {
+  i {
+    font-size: 16px !important;
+  }
+}
+i {
+  font-size: 16px !important;
+}
+::ng-deep.mat-mdc-form-field {
+  width: 100% !important;
+  margin: 0 !important;
+}
+::ng-deep .mdc-text-field--outlined, ::ng-deep .mat-mdc-text-field-wrapper {
+  padding: 0 !important;
+}
+::ng-deep .mat-mdc-form-field-infix {
+  padding: 8px 0px !important;
+}
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+::ng-deep .mdc-text-field__input {
+  padding: 0px 15px !important;
+  font-size: 14px !important;
+}

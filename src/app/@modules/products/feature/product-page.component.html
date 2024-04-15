@@ -1,0 +1,37 @@
+<section class="product--page" (scroll)="onScroll($event)">
+    <div class="container">
+        <div class="subtitle flex-row flex-content-between">
+            <div class="flex-row">Products <small class="var--grey">({{ totalProduct }})</small></div>
+            <div class="text-standard flex-row">
+                <button mat-raised-button color="accent" class="" (click)="exportProduct()" [disabled]="loadingExport">
+                    <div class="flex-row">
+                        <i class="material-icons" *ngIf="!loadingExport">description</i> 
+                        <span class="hidemobile-icon" *ngIf="!loadingExport">Export Excel</span>
+                        <div class="flex-row flex-content-center" *ngIf="loadingExport">
+                            <app-loader></app-loader> 
+                            <span [style.margin-left]="'10px'">Loading...</span> 
+                        </div>
+                    </div>
+                </button> 
+                <button mat-raised-button color="primary" class="" (click)="addProduct()">
+                    <div class="flex-row">
+                        <i class="material-icons">add</i> 
+                        <span class="hidemobile-icon">Add Product</span>
+                    </div>
+                </button>
+            </div>
+        </div>
+        
+        <div>
+            <div class="space"></div>
+            <div class="search">
+                <mat-form-field appearance="outline">
+                    <mat-label>Search</mat-label>
+                    <input [(ngModel)]="searchProduct" (ngModelChange)="onSearchProduct()" matInput placeholder="Search by Id, Name, Description">
+                </mat-form-field>
+            </div>
+            <div class="space"></div>
+            <app-products [products]="filteredProducts | slice: 0 : limitProduct" [loadingProduct]="loadingProduct" [loadingScrollProduct]="loadingScrollProduct" [selectedSort]="selectedSort" [selectedOrderBy]="selectedOrderBy" (changesSort)="changesSort($event)" (updateData)="loadProducts()"></app-products>
+        </div>
+    </div>
+</section>

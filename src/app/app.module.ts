@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { DataService } from './service/data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {MatTableModule} from '@angular/material/table'
@@ -13,6 +11,8 @@ import {MatButtonModule} from '@angular/material/button'
 import {MatInputModule} from '@angular/material/input'
 import {MatFormFieldModule} from '@angular/material/form-field'
 import { ReactiveFormsModule } from '@angular/forms';
+import { SplashScreenModule } from '@core/splash-screen';
+import { NavbarComponent } from '@components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -21,14 +21,15 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientInMemoryWebApiModule.forRoot(DataService),
+    NavbarComponent,
     HttpClientModule,
     MatTableModule,
     MatCardModule,
     MatButtonModule,
     MatInputModule,
     MatFormFieldModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SplashScreenModule
   ],
   providers: [
     provideAnimationsAsync()

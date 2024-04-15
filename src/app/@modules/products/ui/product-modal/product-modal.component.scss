@@ -1,0 +1,22 @@
+.question--item {
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-body  {
+    height: 60vh !important;
+    overflow: auto;
+}
+
+.modal-action {
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+}
+.modal-title {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+}
+
+::ng-deep .mat-mdc-dialog-content {
+    overflow-x: hidden !important;
+}
